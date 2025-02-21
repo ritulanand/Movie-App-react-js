@@ -1,113 +1,168 @@
 import {Component} from "react";
 
-class MovieCard extends Component{
-    constructor(){
-        super();
-        console.log("this", this);
-        this.state = {
-            title : "The Avengers !!",
-            plot : "Supernatural power shown in movie",
-            price : 199,
-            rating : 8.9,
-            stars : 0
-        }
-        // this.addStars = this.addStars.bind(this);  other way to bind event handler
-    }
+class Moviecard extends Component{
+    // constructor(){
+    //     super();
+    //     console.log("this", this);
+    //     this.state = {
+    //         title : "The Avengers !!",
+    //         plot : "Supernatural power shown in movie",
+    //         price : 199,
+    //         rating : 8.9,
+    //         stars : 0,
+    //         fav : false,
+    //         cart : false
+    //     }
+    //     // this.addStars = this.addStars.bind(this);  other way to bind event handler
+    // }
+    // handleCart = () =>{
+    //     this.setState({
+    //         cart : !this.state.cart
+    //     })
+    // }
+
+
+    // handlefav = () => {
+    //     this.setState({
+    //         fav : !this.state.fav
+    //     })
+    // }
     
 
 
-    substractStars = () => {
-        if(this.state.stars > 0){
-            this.setState({
-                stars : this.state.stars - .5
-            })
-        }
-    }
+    // substractStars = () => {
+    //     if(this.state.stars > 0){
+    //         this.setState({
+    //             stars : this.state.stars - .5
+    //         })
+    //     }
+    // }
 
-     addStars = () => { 
+    //  addStars = () => { 
         
-        // console.log("this.state", this);
+    //     // console.log("this.state", this);
 
-        //setState use to set/change the state and also render the component
-        //form1
-        // this.setState({
-        //     stars : this.state.stars + .5
-        // })
-
-        // onclikc one time change use form1
-
-        //form2
-    //     this.setState(prevState => {
-    //        return  {
-    //             stars: prevState.stars+.5
-    //         }
-    //  }
+    //     //setState use to set/change the state and also render the component
+    //     //form1
+    //     // this.setState({
+    //     //     stars : this.state.stars + 9
+    //     // })
+    //     // this.setState({
+    //     //     stars : this.state.stars + 1
+    //     // })
+    //     // this.setState({
+    //     //     stars : this.state.stars + 2
+    //     // })
+    //     // this.setState({
+    //     //     stars : this.state.stars + 12
+    //     // })
         
-    //     )
 
-        this.setState(prevState => 
-            (  {
-                 stars: prevState.stars+.5
-             }
-            )
+    //     // onclikc one time change use form1
+
+    //     //form2
+    // //     this.setState(prevState => {
+    // //        return  {
+    // //             stars: prevState.stars+.5
+    // //         }
+    // //  }
+        
+    // //     )
+    // if(this.state.stars < 5){
+
+    
+    //     this.setState(prevState => 
+    //         (  {
+    //              stars: prevState.stars+.5
+    //          }
+    //         )
          
-         )
+    //      )
 
-        // clasisc expmaple use form 2
+        
 
-        // this.state.stars += .5;
-        // console.log("this.state.stars", this.state.stars);
+    //      console.log("satte", this.state.stars);
+    //     }
 
-     }
+
+
+    //     // clasisc expmaple use form 2
+
+    //     // this.state.stars += .5;
+    //     console.log("this.state.stars", this.state.stars);
+
+    //  }
      
-
     render(){
-
-        const {title, plot, price, rating, stars} = this.state;
-        return (
-            <div className="main">
+        // console.log("props", this.props);
+        const {movies, onIncStars, onClickFav, onClickAddtocart, onDecStars} =  this.props
+        const {title, plot, poster, price, rating,stars,fav,isInCart} =  this.props.movies;
+        
+                
+        return(
+            //Movie Card
             <div className="movie-card">
+
+                {/**Left section of Movie Card */}
                 <div className="left">
-            <img alt="poster" src="https://images.unsplash.com/photo-1561149877-84d268ba65b8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YXZlbmdlcnxlbnwwfHwwfHx8MA%3D%3D" />
+                    <img alt="poster" src={poster} />
                 </div>
+                
+                {/**Right section Movie Card */}
                 <div className="right">
-                    <div className="title">
-                        {this.state.title}
-                    </div>
-                    <div className="plot">
-                    {plot}
-                    </div>
-                    <div className="price">
-                        Rs.{price}
-                    </div>
+
+                    {/**Title, plot, price of the movie */}
+                    <div className="title">{title}</div>
+                    <div className="plot">{plot}</div>
+                    <div className="price">Rs. {price}</div>
+
+                    {/**Footer starts here with ratings, stars and buttons */}
                     <div className="footer">
                         <div className="rating">{rating}</div>
+
+                        {/**Star image with increase and decrease buttons and star count */}
                         <div className="star-dis">
-                            <img 
-                            onClick={this.substractStars}
-                            src="https://cdn-icons-png.flaticon.com/128/9146/9146915.png" className="str-btn" alt="decrease" />
-
-                            
-                                <img src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" className="stars" alt="star" />
-
-                                <img 
-                                onClick={this.addStars}
-                                src="https://cdn-icons-png.flaticon.com/128/748/748113.png" className="str-btn" alt="increase" />
-
-                                <span>{stars}</span>
-                                
-                                
-                           
+                            <img className="str-btn" 
+                                alt="Decrease" 
+                                src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png" 
+                                onClick={() => onDecStars(movies)}
+                            />
+                            <img className="stars" 
+                                    alt="stars" 
+                                    src="https://cdn-icons-png.flaticon.com/128/2107/2107957.png"    
+                            />
+                            <img className="str-btn" 
+                                alt="increase" 
+                                src="https://cdn-icons-png.flaticon.com/128/2997/2997933.png" 
+                                // No binding required as addStars() is an arrow function
+                                onClick={() => onIncStars(movies)}
+                            />
+                            <span className="starCount">{stars}</span>
                         </div>
-                        <button className="favourite-btn">Favourite</button>
-                        <button className="cart-btn">Add to cart</button>
-                         
+
+                        {/**conditional rendering on Favourite button */}
+                        <button className={fav?"unfavourite-btn":"favourite-btn"}  
+                                onClick={() => onClickFav(movies)}> 
+                                    {/* // lifting state up - child to parent state update  */}
+                                    {fav ? "Un-favourite":"Favourite"}
+
+                        </button>
+                            
+                        {/**Conditional Rendering on Add to Cart Button */}
+                        <button className={isInCart?"unfavourite-btn":"cart-btn"}  
+                                onClick={() => onClickAddtocart(movies)}>
+                                    
+                                        {isInCart ? "Remove from Cart":"Add to Cart"}
+
+                        </button>
+                        
                     </div>
                 </div>
+
             </div>
-            </div>
+          
         )
     }
 }
 
-export default MovieCard;
+export default Moviecard;
