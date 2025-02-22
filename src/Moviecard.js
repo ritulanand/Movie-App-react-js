@@ -1,6 +1,6 @@
 import {Component} from "react";
 
-class Moviecard extends Component{
+function Moviecard(props){
     // constructor(){
     //     super();
     //     console.log("this", this);
@@ -93,16 +93,16 @@ class Moviecard extends Component{
 
     //  }
      
-    render(){
+    
         // console.log("props", this.props);
-        const {movies, onIncStars, onClickFav, onClickAddtocart, onDecStars} =  this.props
-        const {title, plot, poster, price, rating,stars,fav,isInCart} =  this.props.movies;
+        const {movies, onIncStars, onClickFav, onClickAddtocart, onDecStars} =  props
+        const {title, plot, poster, price, rating,stars,fav,isInCart} =  props.movies;
         
                 
         return(
             //Movie Card
             <div className="movie-card">
-
+                
                 {/**Left section of Movie Card */}
                 <div className="left">
                     <img alt="poster" src={poster} />
@@ -162,7 +162,7 @@ class Moviecard extends Component{
             </div>
           
         )
-    }
+    
 }
 
 export default Moviecard;
